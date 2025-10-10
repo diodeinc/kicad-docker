@@ -1,0 +1,7 @@
+FROM ubuntu:25.10
+
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && \
+    apt-get install -y kicad kicad-libraries kicad-packages3d && \
+    rm -rf /var/lib/apt/lists/*
