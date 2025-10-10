@@ -12,12 +12,12 @@ This repo builds KiCad 9.0.5 on Debian Trixie (13) which includes OpenCascade 7.
 
 ```bash
 # Pull from GitHub Container Registry
-docker pull ghcr.io/diodeinc/kicad:9.0.5-trixie-full
+docker pull ghcr.io/dioderobot/kicad:9.0.5-trixie-full
 
 # Export GLB with proper colors
 docker run --rm \
   -v $(pwd):/workspace \
-  ghcr.io/diodeinc/kicad:9.0.5-trixie-full \
+  ghcr.io/dioderobot/kicad:9.0.5-trixie-full \
   kicad-cli pcb export glb \
   --output /workspace/output.glb \
   --subst-models \
@@ -32,14 +32,15 @@ docker run --rm \
   /workspace/your-board.kicad_pcb
 ```
 
-## Available Tags
+## Available Images
 
-- `ghcr.io/diodeinc/kicad:9.0.5-trixie-full` - KiCad 9.0.5 with 3D models on Debian Trixie
+- `ghcr.io/diodeinc/kicad:9.0.5-trixie-full` - Primary image
+- `ghcr.io/dioderobot/kicad:9.0.5-trixie-full` - Mirror for automation workflows
 
 ## The Bug
 
 ### Problem
-KiCad GLB exports from official Docker containers (`kicad/kicad:9.0.3-full`) show greyed-out models with no component colors.
+KiCad GLB exports from official Docker containers (`kicad/kicad:9.0.5-full`) show greyed-out models with no component colors.
 
 ### Root Cause
 OpenCascade 7.6.3 (in Debian Bookworm) has a bug reading STEP material/color attributes. Fixed in OCCT 7.7.1.
@@ -66,6 +67,23 @@ docker build \
 ```
 
 Build time: ~20-30 minutes
+
+## Setup for Publishing
+
+### GitHub Actions Permissions
+
+The workflow automatically pushes to `ghcr.io/diodeinc/kicad` using the repository's `GITHUB_TOKEN`.
+
+To push to `ghcr.io/dioderobot/kicad`, add a Personal Access Token:
+
+1. Create a PAT at https://github.com/settings/tokens/new with `write:packages` scope
+2. Add it as a repository secret named `DIODEROBOT_GHCR_TOKEN`:
+   - Go to https://github.com/diodeinc/kicad-docker/settings/secrets/actions
+   - Click "New repository secret"
+   - Name: `DIODEROBOT_GHCR_TOKEN`
+   - Value: [your PAT token]
+
+The workflow will then push to both registries.
 
 ## License
 
