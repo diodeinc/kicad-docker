@@ -1,7 +1,7 @@
 # KiCad on Debian Trixie (OCCT 7.8.1 for proper GLB color export)
 # Based on official KiCad Docker images with Trixie base for OCCT 7.8.1
 FROM debian:trixie AS build
-ARG KICAD_VERSION=9.0.5
+ARG KICAD_VERSION=9.0.6
 
 # install build dependencies 
 RUN apt-get update && \
