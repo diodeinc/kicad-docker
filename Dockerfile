@@ -2,6 +2,8 @@
 # Based on official KiCad Docker images with Trixie base for OCCT 7.8.1
 FROM debian:trixie AS build
 ARG KICAD_VERSION=9.0.6
+ARG KICAD_REPO=https://gitlab.com/kicad/code/kicad.git
+ARG KICAD_BRANCH=${KICAD_VERSION}
 
 # install build dependencies 
 RUN apt-get update && \
@@ -42,7 +44,7 @@ RUN apt-get update && \
 WORKDIR /src
 
 RUN set -ex;            \
-    git clone -b $KICAD_VERSION https://gitlab.com/kicad/code/kicad.git; \
+    git clone -b $KICAD_BRANCH $KICAD_REPO; \
     git clone -b $KICAD_VERSION https://gitlab.com/kicad/libraries/kicad-symbols.git; \
     git clone -b $KICAD_VERSION https://gitlab.com/kicad/libraries/kicad-footprints.git; \
     git clone -b $KICAD_VERSION https://gitlab.com/kicad/libraries/kicad-templates.git;
