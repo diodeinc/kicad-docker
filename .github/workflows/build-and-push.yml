@@ -126,6 +126,7 @@ jobs:
             KICAD_VERSION=9.0.6
             KICAD_REPO=https://gitlab.com/akhil106/kicad.git
             KICAD_BRANCH=9.0-diode
+            KICAD_COMMIT_HASH=${{ steps.commit.outputs.hash }}
           cache-from: type=gha,scope=diode-fork
           cache-to: type=gha,mode=max,scope=diode-fork
 

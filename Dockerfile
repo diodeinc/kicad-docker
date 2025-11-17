@@ -4,6 +4,7 @@ FROM debian:trixie AS build
 ARG KICAD_VERSION=9.0.6
 ARG KICAD_REPO=https://gitlab.com/kicad/code/kicad.git
 ARG KICAD_BRANCH=${KICAD_VERSION}
+ARG KICAD_COMMIT_HASH=unknown
 
 # install build dependencies 
 RUN apt-get update && \
@@ -42,6 +43,9 @@ RUN apt-get update && \
     libpoppler-glib-dev
 
 WORKDIR /src
+
+# Cache-busting layer - changes when KICAD_COMMIT_HASH changes
+RUN echo "Building KiCad commit: $KICAD_COMMIT_HASH"
 
 RUN set -ex;            \
     git clone -b $KICAD_BRANCH $KICAD_REPO; \
