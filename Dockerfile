@@ -158,7 +158,15 @@ RUN apt-get update && \
     libfreetype6 \
     libharfbuzz0b \
     fonts-dejavu-core \
-    fonts-liberation
+    fonts-liberation \
+    curl \
+    ca-certificates
+
+# Install DIN Condensed Bold font
+RUN mkdir -p /usr/share/fonts/truetype/din && \
+    curl -L -o /usr/share/fonts/truetype/din/DINCondensedBold.ttf \
+    "https://github.com/justrajdeep/fonts/raw/master/DIN%20Condensed%20Bold.ttf" && \
+    fc-cache -f -v
 
 COPY --from=build /usr/installtemp/bin /usr/bin
 COPY --from=build /usr/installtemp/share /usr/share
