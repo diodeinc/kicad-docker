@@ -152,7 +152,13 @@ RUN apt-get update && \
     libnng1 \
     libspnav0 \
     libpoppler-glib8t64 \
-    sudo
+    sudo \
+    fontconfig \
+    libfontconfig1 \
+    libfreetype6 \
+    libharfbuzz0b \
+    fonts-dejavu-core \
+    fonts-liberation
 
 COPY --from=build /usr/installtemp/bin /usr/bin
 COPY --from=build /usr/installtemp/share /usr/share
