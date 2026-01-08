@@ -17,8 +17,8 @@ These images use newer base systems with OpenCascade 7.8.1 which fixes the color
 - **Build time:** ~2 minutes
 
 ### Debian Trixie (Recommended)
-- **Tag:** `ghcr.io/dioderobot/kicad:9.0.6-trixie-full`
-- **KiCad:** 9.0.6 compiled from source
+- **Tag:** `ghcr.io/dioderobot/kicad:9.0.7-trixie-full`
+- **KiCad:** 9.0.7 compiled from source
 - **Size:** ~3GB
 - **Build time:** ~30 minutes
 
@@ -49,7 +49,7 @@ docker run --rm \
 ## The Bug
 
 ### Problem
-KiCad GLB exports from official Docker containers (`kicad/kicad:9.0.6-full`) show greyed-out models with no component colors.
+KiCad GLB exports from official Docker containers (`kicad/kicad:9.0.7-full`) show greyed-out models with no component colors.
 
 ### Root Cause
 OpenCascade 7.6.3 (in Debian Bookworm) has a bug reading STEP material/color attributes. Fixed in OCCT 7.7.1.
@@ -62,9 +62,9 @@ OpenCascade 7.6.3 (in Debian Bookworm) has a bug reading STEP material/color att
 
 | Image | Base OS | OCCT | Materials | Colors |
 |-------|---------|------|-----------|--------|
-| `kicad/kicad:9.0.6-full` | Debian Bookworm | 7.6.3 | 4 | ❌ Grey |
+| `kicad/kicad:9.0.7-full` | Debian Bookworm | 7.6.3 | 4 | ❌ Grey |
 | `ghcr.io/dioderobot/kicad:9.0.3-ubuntu-25.10` | Ubuntu 25.10 | 7.8.1 | 19 | ✅ Full color |
-| `ghcr.io/dioderobot/kicad:9.0.6-trixie-full` | Debian Trixie | 7.8.1 | 20 | ✅ Full color |
+| `ghcr.io/dioderobot/kicad:9.0.7-trixie-full` | Debian Trixie | 7.8.1 | 20 | ✅ Full color |
 
 ## Building Locally
 
@@ -75,7 +75,7 @@ docker build -f Dockerfile.ubuntu -t kicad:ubuntu .
 
 ### Debian Trixie (latest KiCad)
 ```bash
-docker build --build-arg include_3d=true --build-arg KICAD_VERSION=9.0.6 -t kicad:trixie .
+docker build --build-arg include_3d=true --build-arg KICAD_VERSION=9.0.7 -t kicad:trixie .
 ```
 
 ## License
