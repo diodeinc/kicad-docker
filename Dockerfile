@@ -1,7 +1,7 @@
 # KiCad on Debian Trixie (OCCT 7.8.1 for proper GLB color export)
 # Based on official KiCad Docker images with Trixie base for OCCT 7.8.1
 FROM debian:trixie AS build
-ARG KICAD_VERSION=9.0.8
+ARG KICAD_VERSION=10.0.0
 ARG KICAD_REPO=https://gitlab.com/kicad/code/kicad.git
 ARG KICAD_BRANCH=${KICAD_VERSION}
 ARG KICAD_COMMIT_HASH=unknown
@@ -115,7 +115,7 @@ ARG USER_UID=1000
 ARG USER_GID=$USER_UID
 
 LABEL org.opencontainers.image.source="https://github.com/diodeinc/kicad-docker" \
-      org.opencontainers.image.description="KiCad 9.0.3 on Debian Trixie with OCCT 7.8.1 for proper GLB export" \
+      org.opencontainers.image.description="KiCad 10.0.0 on Debian Trixie with OCCT 7.8.1 for proper GLB export" \
       org.opencontainers.image.licenses="GPL-3.0-or-later"
 
 # Install runtime dependencies with OCCT 7.8

@@ -49,7 +49,7 @@ jobs:
             ${{ env.REGISTRY }}/diodeinc/kicad
             ${{ env.REGISTRY }}/dioderobot/kicad
           tags: |
-            type=raw,value=9.0.8-trixie-full
+            type=raw,value=10.0.0-trixie-full
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v5
@@ -62,7 +62,7 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           build-args: |
             include_3d=true
-            KICAD_VERSION=9.0.8
+            KICAD_VERSION=10.0.0
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
